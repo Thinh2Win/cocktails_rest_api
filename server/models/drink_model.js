@@ -1,6 +1,6 @@
 const { pool } = require('../db/db.js');
 
-const searchDrinkById = (drinkId) => {
+const queryDrinkById = (drinkId) => {
   return pool.query(`
     SELECT jsonb_strip_nulls(to_jsonb(recipes))
     FROM recipes WHERE drink_id = ${drinkId};`)
@@ -8,6 +8,15 @@ const searchDrinkById = (drinkId) => {
     .catch(err => err);
 };
 
+const queryRandomDrink = () => {
+  return pool.query(`
+    SELECT jsonb_strip_nulls(to_jsonb(recipes))
+    FROM recipes WHERE drink_id = ${Math.floor(Math.random() * 545)};`)
+    .then(res => res.rows)
+    .catch(res => err);
+};
+
 module.exports = {
-  searchDrinkById
+  queryDrinkById,
+  queryRandomDrink
 };

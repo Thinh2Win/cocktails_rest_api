@@ -1,11 +1,18 @@
-const { searchDrinkById } = require('../models/drink_model.js');
+const { queryDrinkById, queryRandomDrink } = require('../models/drink_model.js');
 
 const getDrinkById = (drinkId) => {
-  return searchDrinkById(drinkId)
+  return queryDrinkById(drinkId)
+    .then(res => res)
+    .catch(err => err);
+};
+
+const getRandomDrink = () => {
+  return queryRandomDrink()
     .then(res => res)
     .catch(err => err);
 };
 
 module.exports = {
-  getDrinkById
+  getDrinkById,
+  getRandomDrink
 };

@@ -1,10 +1,10 @@
 const express = require('express');
 const app = express();
-const { getDrinkById } = require('./controllers/drink_controllers');
+const { getDrinkById, getRandomDrink } = require('./controllers/drink_controllers');
 require('dotenv').config();
 
 app.get('/', (req, res) => {
-  getDrinkById(3)
+  getRandomDrink()
     .then(data => res.send(data[0].jsonb_strip_nulls))
     .catch(err => res.send(err));
 });
