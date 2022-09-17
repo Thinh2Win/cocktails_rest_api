@@ -1,14 +1,15 @@
 const express = require('express');
 const app = express();
-const { getData } = require('./db.js');
+const { getDrinkById } = require('./controllers/drink_controllers');
 require('dotenv').config();
 
 app.get('/', (req, res) => {
-  res.send('Hello World');
+  getDrinkById(3)
+    .then(data => res.send(data[0].jsonb_strip_nulls))
+    .catch(err => res.send(err));
 });
 
-getData().then(data => console.log(data));
 
-app.listen(() => {
+app.listen(process.env.PORT, () => {
   console.log(`server listening on port ${process.env.PORT}`);
 });

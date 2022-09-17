@@ -8,10 +8,4 @@ const pool = new Pool({
   port: process.env.DB_PORT
 });
 
-const getData = () => {
-  return pool.query(`SELECT * FROM users`)
-    .then(res => res.rows)
-    .catch(err => err);
-};
-
-module.exports = {getData};
+module.exports = {pool};

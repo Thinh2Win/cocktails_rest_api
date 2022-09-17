@@ -1,0 +1,11 @@
+const { searchDrinkById } = require('../models/drink_model.js');
+
+const getDrinkById = (drinkId) => {
+  return searchDrinkById(drinkId)
+    .then(res => res)
+    .catch(err => err);
+};
+
+module.exports = {
+  getDrinkById
+};
