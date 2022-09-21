@@ -45,14 +45,14 @@ const drinksQuery = `CREATE TABLE recipes(
 
 const seedDrinks = () => {
   pool.query(`COPY recipes FROM '${process.env.DATA_FILE_PATH}' DELIMITER ',' CSV HEADER`)
-    .then(data => console.log('db seeded'))
+    .then( _ => console.log('db seeded'))
     .catch(err => console.log(err));
 };
 
 const seedDb = () => {
   pool.query(drinksQuery)
     .then( _ => console.log('recipes table created'))
-    .then(_ => seedDrinks())
+    .then( _ => seedDrinks())
     .catch(err => console.log(err));
 };
 
