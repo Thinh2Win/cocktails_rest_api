@@ -44,7 +44,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![FALCO MICROSERVICES][product-screenshot]](https://example.com)
+[![FALCO MICROSERVICES]]
 
 This is an API microservice that delivers reviews data for a catalog of products. This API handles get requests for all reviews of a product (paginated and sorted) as well as aggregate review data for a product (ie an overall rating) and also handles posts of new reviews. The database is PostgreSQL and all queries run in an average of 20 ms. The server layer is made with Node.js and Express. It is designed to be easily scalable through multiple AWS EC2 instances. While this project was deployed, it was on 7 EC2 instances. One instance was a reverse-proxy server made with NGINX that distributed traffic across 5 Express servers, in which, queried the Postgres database. This setup was able to handle up to 2,000 requests per second with an average response time of 80 ms and an error rate of less than 1%.
 
@@ -56,14 +56,10 @@ This is an API microservice that delivers reviews data for a catalog of products
 
 This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
 
-* [![Next][Next.js]][Next-url]
-* [![React][React.js]][React-url]
-* [![Vue][Vue.js]][Vue-url]
-* [![Angular][Angular.io]][Angular-url]
-* [![Svelte][Svelte.dev]][Svelte-url]
-* [![Laravel][Laravel.com]][Laravel-url]
-* [![Bootstrap][Bootstrap.com]][Bootstrap-url]
-* [![JQuery][JQuery.com]][JQuery-url]
+* [![Express][Express.js]][Express-url]
+* [![Node][Node.js]][Node-url]
+* [![Postgresql][Vue.js]][Vue-url]
+* [![AWS][AWS]][AWS-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
