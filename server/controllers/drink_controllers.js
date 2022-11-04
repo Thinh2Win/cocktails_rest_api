@@ -2,7 +2,7 @@ const { queryDrinkByName, queryRandomDrink, queryDrinkByIngredients } = require(
 
 const getRandomDrink = (req, res) => {
   queryRandomDrink()
-    .then(data => res.send(data[0]))
+    .then(data => res.send(data))
     .catch(err => res.status(404).send(err));
 };
 

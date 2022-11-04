@@ -1,9 +1,9 @@
+const { cocktails } = require('../../server/db/db.js');
+
 const queryRandomDrink = () => {
-  return pool.query(`
-    SELECT jsonb_strip_nulls(to_jsonb(recipes))
-    FROM recipes WHERE drink_id = ${Math.floor(Math.random() * 545)};`)
-    .then(res => res.rows)
-    .catch(res => err);
+  return cocktails.aggregate([{$sample: {size: 1}}])
+    .then(res => res)
+    .catch(err => err);
 };
 
 const queryDrinkByName = (name) => {
