@@ -1,8 +1,10 @@
 const express = require('express');
+
 const app = express();
 const drinksRoutes = require('./routes/drink_routes.js');
 require('dotenv').config();
 
+app.use(express.json());
 app.use(drinksRoutes);
 
 app.listen(process.env.PORT, () => {

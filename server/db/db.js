@@ -1,11 +1,16 @@
-const { Pool } = require('pg');
-require('dotenv').config();
+const db = require('mongoose');
 
-const pool = new Pool({
-  user: process.env.DB_USER,
-  database: process.env.DB_NAME,
-  password: process.env.DB_PW,
-  port: process.env.DB_PORT
-});
-
-module.exports = {pool};
+db.connect('mongodb://localhost:27017/drink_recipes')
+  .then(res => {
+    console.log('connected to mongodb');
+    const cocktailSchema = new db.Schema({
+      Name: String,
+      Ingredients: String,
+      Garnish: String,
+      Preparation: String
+    });
+    const cocktails = db.model('cocktail', cocktailSchema);
+    cocktails.findOne({Name: 'Cut & Rum'})
+      .then(data => console.log(data));
+  })
+  .catch(err => console.log(err));

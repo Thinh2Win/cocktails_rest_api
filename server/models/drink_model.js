@@ -1,5 +1,3 @@
-const { pool } = require('../db/db.js');
-
 const queryRandomDrink = () => {
   return pool.query(`
     SELECT jsonb_strip_nulls(to_jsonb(recipes))
