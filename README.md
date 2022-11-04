@@ -13,9 +13,9 @@ This is a restful API microservice that delivers cocktail recipe data.
 
 ## API Endpoints
 | Method        | Endpoint      | Description   | Parameters    | JSON Body    |
-| ------------- | ------------- | ------------- | ------------- |
-| GET           | /reviews | Retrieves reviews | product_id, order, count |
-| GET           | /reviews/meta | Retrieves meta data for a review | review_id |
+| ------------- | ------------- | ------------- | ------------- | ------------- |
+| GET           | /reviews | Retrieves reviews | product_id, order, count ||
+| GET           | /reviews/meta | Retrieves meta data for a review | review_id ||
 | POST          | /reviews | Posts a review |  | product_id, body, name, email |
-| PUT           | /reviews/:review_id/helpful | Mark review as helpful | review_id |
-| PUT           | /reviews/:review_id/report | Report a review | review_id |
+| PUT           | /reviews/:review_id/helpful | Mark review as helpful | review_id ||
+| PUT           | /reviews/:review_id/report | Report a review | review_id ||
