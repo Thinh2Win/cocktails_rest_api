@@ -4,7 +4,7 @@ const { getDrinkByName, getRandomDrink, getDrinkByIngredients } = require('../co
 
 drinksRoutes.get('/drink', getRandomDrink);
 
-drinksRoutes.get('/drink/name', getDrinkByName);
+drinksRoutes.get('/drink/search', getDrinkByName);
 
 drinksRoutes.get('/drink/ingredients', getDrinkByIngredients);
 

@@ -6,11 +6,15 @@ const queryRandomDrink = () => {
     .catch(err => err);
 };
 
-const queryDrinkByName = (name) => {
-  return pool.query(`
-    SELECT jsonb_strip_nulls(to_jsonb(recipes))
-    FROM recipes WHERE LOWER(strdrink) LIKE LOWER('%${name}%');`)
-    .then(res => res.rows)
+const queryDrinkByName = (param) => {
+  // cocktails in db have 1st letters capitol so we need to change our params to match
+  let name = param.split(' ').map(word => {
+    return word.toLowerCase().replace(word[0].toLowerCase(), word[0].toUpperCase());
+  }).join(' ');
+  // mongodb uses regex as the equivalent to mysql 'LIKE' query
+  let regex = new RegExp(String.raw`${name}`);
+  return cocktails.find({Name: regex})
+    .then(res => res)
     .catch(err => err);
 };
 
