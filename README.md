@@ -12,8 +12,8 @@ This is a restful API microservice that delivers cocktail recipe data.
 - csv data: https://www.kaggle.com/datasets/shuyangli94/cocktails-hotaling-co
 
 ## API Endpoints
-| Method        | Endpoint      | Description   | Parameters    |
-| ------------- | ------------- | ------------- | ------------- |
-| GET           | /drinks | Retrieves random cocktail | |
-| GET           | /drinks/search?n= | Retrieves a cocktail with similar name | name |
-| GET          | /drinks/search?i= | Retrieves a cocktail with listed ingredients| ingredients |
+| Method        | Endpoint      | Description   | Parameters    | Example |
+| ------------- | ------------- | ------------- | ------------- | ------- |
+| GET           | /drinks | Retrieves random cocktail | | localhost:3000/drinks |
+| GET           | /drinks/search?n= | Retrieves a cocktail with similar name | name | localhost:3000/drinks/search?n=mai thai
+| GET          | /drinks/search?i= | Retrieves a cocktail with listed ingredients| ingredients | localhost:3000/drinks/search?i=gin,vodka,tequila,blue curcao |
