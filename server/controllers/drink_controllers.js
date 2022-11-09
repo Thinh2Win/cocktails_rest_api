@@ -14,7 +14,7 @@ const getDrinkByName = (req, res) => {
 
 const getDrinkByIngredients = (req, res) => {
   queryDrinkByIngredients(req.query.i)
-    .then(data => res.send(data.map(drinks => drinks.jsonb_strip_nulls)))
+    .then(data => res.send(data))
     .catch(err => res.status(404).send(err));
 };
 
