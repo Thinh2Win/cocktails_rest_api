@@ -4,21 +4,21 @@ const pascalCase = (string) => {
   }).join(' ');
 };
 
-const createExpressions = (key, ingredients) => {
+const createExpressions = (method, ingredients) => {
   let expressions = [];
   // check for empty ingredients
   if (ingredients.split(' ').join('').length < 1) {
     return expressions;
   }
-  let items = pascalCase(ingredients.split(',').join(' ')).split(' ');
-  items.forEach(item => {
-    let regex = new RegExp(String.raw`${item}`);
-    expressions.push({[key]: regex});
+  ingredients.split(',').forEach(ingredient => {
+    let regex = new RegExp(String.raw`${ingredient}`);
+    method === 'search' && expressions.push({Ingredients: regex});
+    method === 'filter' && expressions.push({Ingredients: {$not: regex}});
   });
   return expressions;
 };
 
 module.exports = {
   pascalCase,
-  createExpressions
+  createExpressions,
 };
