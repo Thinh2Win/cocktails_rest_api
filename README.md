@@ -16,4 +16,5 @@ This is a restful API microservice that delivers cocktail recipe data.
 | ------------- | ------------- | ------------- | ------------- | ------- |
 | GET           | /drink | Retrieves random cocktail | | localhost:3000/drink |
 | GET           | /drink/name | Retrieves a cocktail with similar name | name | localhost:3000/drink/name?n=mai tai
-| GET          | /drink/ingredients | Retrieves a cocktail with listed ingredients| ingredients | localhost:3000/drink/ingredients?i=gin,blue curacao,lime |
+| GET          | /drink/ingredients | Retrieves a cocktail with listed ingredients| ingredients | localhost:3000/drink/ingredients?i=sweet vermouth,campari,gin|
+| GET          | /drink/filter | Retrieves a cocktails that exclude listed ingredients| ingredients | localhost:3000/drink/filter?f=pineapple,tequila,whiskey|
