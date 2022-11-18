@@ -6,7 +6,7 @@ drinksRoutes.get('/drink', getRandomDrink);
 
 drinksRoutes.get('/drink/name', getDrinkByName);
 
-drinksRoutes.get('/drink/ingredients', getDrinkByIngredients);
+drinksRoutes.get('/drink/search', getDrinkByIngredients);
 
 drinksRoutes.get('/drink/filter', filterDrinkByIngredients);
 
