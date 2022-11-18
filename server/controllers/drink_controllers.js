@@ -1,4 +1,4 @@
-const { queryDrinkByName, queryRandomDrink, queryDrinkByIngredients } = require('../models/drink_model.js');
+const { queryDrinkByName, queryRandomDrink, queryDrinkByIngredients, queryDrinkExcludingIngredients } = require('../models/drink_model.js');
 
 const getRandomDrink = (req, res) => {
   queryRandomDrink()
@@ -18,8 +18,15 @@ const getDrinkByIngredients = (req, res) => {
     .catch(err => res.status(404).send(err));
 };
 
+const filterDrinkByIngredients = (req, res) => {
+  queryDrinkExcludingIngredients(req.query.f)
+    .then(data => res.send(data))
+    .catch(err => res.status(404).send(err));
+};
+
 module.exports = {
   getDrinkByName,
   getRandomDrink,
-  getDrinkByIngredients
+  getDrinkByIngredients,
+  filterDrinkByIngredients
 };
