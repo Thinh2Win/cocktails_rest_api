@@ -19,7 +19,7 @@ const getDrinkByIngredients = (req, res) => {
 };
 
 const filterDrinkByIngredients = (req, res) => {
-  queryDrinkExcludingIngredients(req.query.f)
+  queryDrinkExcludingIngredients(req.query.i)
     .then(data => res.send(data))
     .catch(err => res.status(404).send(err));
 };
