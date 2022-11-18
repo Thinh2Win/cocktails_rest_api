@@ -7,8 +7,7 @@ const queryRandomDrink = () => {
 };
 
 const queryDrinkByName = (param) => {
-  // cocktails in db have 1st letters capitol so we need to change our params to match
-  let name = pascalCase(param);
+  let name = param.toLowerCase();
   // mongodb uses regex as the equivalent to mysql 'LIKE' query
   let regex = new RegExp(String.raw`${name}`);
   return cocktails.find({Name: regex})
@@ -18,7 +17,14 @@ const queryDrinkByName = (param) => {
 
 const queryDrinkByIngredients = (ingredients) => {
   // ingredients come from route param as string separated by commas
-  let expressions = createExpressions('Ingredients', ingredients);
+  let expressions = createExpressions('search', ingredients);
+  return cocktails.find({$and: expressions})
+    .then(res => res)
+    .catch(err => err);
+};
+
+const queryDrinkExcludingIngredients = (ingredients) => {
+  let expressions = createExpressions('filter', ingredients);
   return cocktails.find({$and: expressions})
     .then(res => res)
     .catch(err => err);
@@ -27,5 +33,6 @@ const queryDrinkByIngredients = (ingredients) => {
 module.exports = {
   queryDrinkByName,
   queryRandomDrink,
-  queryDrinkByIngredients
+  queryDrinkByIngredients,
+  queryDrinkExcludingIngredients
 };
