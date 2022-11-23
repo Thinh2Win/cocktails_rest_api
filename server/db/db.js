@@ -14,5 +14,6 @@ db.connect(process.env.DB_URL)
 const cocktails = db.model('cocktail', cocktailSchema);
 
 module.exports = {
-  cocktails
+  cocktails,
+  db
 };

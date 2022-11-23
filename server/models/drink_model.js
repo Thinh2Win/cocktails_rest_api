@@ -1,9 +1,8 @@
 const { cocktails } = require('../../server/db/db.js');
 const { createExpressions } = require('../helpers/helpers.js');
+
 const queryRandomDrink = () => {
-  return cocktails.aggregate([{$sample: {size: 1}}])
-    .then(res => res)
-    .catch(err => err);
+  return cocktails.aggregate([{$sample: {size: 1}}]);
 };
 
 const queryDrinkByName = (param) => {
