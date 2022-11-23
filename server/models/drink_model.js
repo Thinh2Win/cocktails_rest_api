@@ -1,5 +1,5 @@
 const { cocktails } = require('../../server/db/db.js');
-const { pascalCase, createExpressions } = require('../helpers/helpers.js');
+const { createExpressions } = require('../helpers/helpers.js');
 const queryRandomDrink = () => {
   return cocktails.aggregate([{$sample: {size: 1}}])
     .then(res => res)
