@@ -24,14 +24,32 @@ const getDrinkByName = (req, res) => {
 };
 
 const getDrinkByIngredients = (req, res) => {
-  queryDrinkByIngredients(req.query.i)
-    .then(data => res.send(data))
+  let ingredients = req.query.i;
+
+  redisClient.get(ingredients)
+    .then(data => {
+      if (data) {
+        res.send(JSON.parse(data));
+      } else {
+        addToCache(ingredients, queryDrinkByIngredients, 'search:')
+          .then(drinks => res.send(drinks));
+      }
+    })
     .catch(err => res.status(404).send(err));
 };
 
 const getDrinkExcludingIngredients = (req, res) => {
-  queryDrinkExcludingIngredients(req.query.i)
-    .then(data => res.send(data))
+  let ingredients = req.query.i;
+
+  redisClient.get(ingredients)
+    .then(data => {
+      if (data) {
+        res.send(JSON.parse(data));
+      } else {
+        addToCache(ingredients, queryDrinkExcludingIngredients, 'filter:')
+          .then(drinks => res.send(drinks));
+      }
+    })
     .catch(err => res.status(404).send(err));
 };
 
