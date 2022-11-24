@@ -1,6 +1,13 @@
 const db = require('mongoose');
+const { createClient } = require('redis');
+
 require('dotenv').config();
 
+const redisClient = createClient();
+
+redisClient.connect()
+  .catch(err => console.log(err));
+  
 const cocktailSchema = new db.Schema({
   Name: String,
   Ingredients: String,
@@ -15,5 +22,6 @@ const cocktails = db.model('cocktail', cocktailSchema);
 
 module.exports = {
   cocktails,
-  db
+  db,
+  redisClient
 };
