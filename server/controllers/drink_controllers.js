@@ -1,3 +1,6 @@
+const { redisClient } = require('../db/db.js');
+const { addToCache } = require('../helpers/helpers.js');
+
 const { queryDrinkByName, queryRandomDrink, queryDrinkByIngredients, queryDrinkExcludingIngredients } = require('../models/drink_model.js');
 
 const getRandomDrink = (req, res) => {
@@ -7,8 +10,16 @@ const getRandomDrink = (req, res) => {
 };
 
 const getDrinkByName = (req, res) => {
-  queryDrinkByName(req.query.n)
-    .then(data => res.send(data))
+  let name = req.query.n;
+  redisClient.get(name)
+    .then(data => {
+      if (data) {
+        res.send(JSON.parse(data));
+      } else {
+        addToCache(name, queryDrinkByName)
+          .then(drinks => res.send(drinks));
+      }
+    })
     .catch(err => res.status(404).send(err));
 };
 
