@@ -1,3 +1,5 @@
+const { redisClient } = require('../db/db.js');
+
 const pascalCase = (string) => {
   return string.split(' ').map(word => {
     return word.toLowerCase().replace(word[0].toLowerCase(), word[0].toUpperCase());
@@ -19,7 +21,17 @@ const createExpressions = (method, ingredients) => {
   return expressions;
 };
 
+const addToCache = (key, cb) => {
+  return cb(key)
+    .then(value => {
+      redisClient.set(key, JSON.stringify(value), {EX: 3600});
+      return value;
+    });
+};
+
+
 module.exports = {
   pascalCase,
   createExpressions,
+  addToCache
 };
