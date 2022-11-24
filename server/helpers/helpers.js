@@ -21,10 +21,10 @@ const createExpressions = (method, ingredients) => {
   return expressions;
 };
 
-const addToCache = (key, cb) => {
-  return cb(key)
+const addToCache = (key, query, method = '') => {
+  return query(key)
     .then(value => {
-      redisClient.set(key, JSON.stringify(value), {EX: 3600});
+      redisClient.set(method + key, JSON.stringify(value), {EX: 3600});
       return value;
     });
 };
