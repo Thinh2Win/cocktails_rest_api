@@ -1,4 +1,4 @@
-const { redisClient } = require('../db/db.js');
+const { cache } = require('../db/db.js');
 const { addToCache } = require('../helpers/helpers.js');
 
 const { queryDrinkByName, queryRandomDrink, queryDrinkByIngredients, queryDrinkExcludingIngredients } = require('../models/drink_model.js');
@@ -11,7 +11,7 @@ const getRandomDrink = (req, res) => {
 
 const getDrinkByName = (req, res) => {
   let name = req.query.n;
-  redisClient.get(name)
+  cache.get(name)
     .then(data => {
       if (data) {
         res.send(JSON.parse(data));
@@ -26,7 +26,7 @@ const getDrinkByName = (req, res) => {
 const getDrinkByIngredients = (req, res) => {
   let ingredients = req.query.i;
 
-  redisClient.get(ingredients)
+  cache.get(ingredients)
     .then(data => {
       if (data) {
         res.send(JSON.parse(data));
@@ -41,7 +41,7 @@ const getDrinkByIngredients = (req, res) => {
 const getDrinkExcludingIngredients = (req, res) => {
   let ingredients = req.query.i;
 
-  redisClient.get(ingredients)
+  cache.get(ingredients)
     .then(data => {
       if (data) {
         res.send(JSON.parse(data));

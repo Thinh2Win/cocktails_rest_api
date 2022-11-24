@@ -2,7 +2,6 @@ import http from 'k6/http';
 import { sleep } from 'k6';
 
 export const options = {
-  // stress test
   stages: [
     { duration: '5s', target: 100 }, // below normal load
     { duration: '5s', target: 100 },

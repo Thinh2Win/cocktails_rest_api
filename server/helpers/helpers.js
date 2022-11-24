@@ -1,4 +1,4 @@
-const { redisClient } = require('../db/db.js');
+const { cache } = require('../db/db.js');
 
 const pascalCase = (string) => {
   return string.split(' ').map(word => {
@@ -24,7 +24,7 @@ const createExpressions = (method, ingredients) => {
 const addToCache = (key, query, method = '') => {
   return query(key)
     .then(value => {
-      redisClient.set(method + key, JSON.stringify(value), {EX: 3600});
+      cache.set(method + key, JSON.stringify(value), {EX: 3600});
       return value;
     });
 };

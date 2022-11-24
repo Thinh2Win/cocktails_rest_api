@@ -3,11 +3,11 @@ const { createClient } = require('redis');
 
 require('dotenv').config();
 
-const redisClient = createClient();
+const cache = createClient();
 
-redisClient.connect()
+cache.connect()
   .catch(err => console.log(err));
-  
+
 const cocktailSchema = new db.Schema({
   Name: String,
   Ingredients: String,
@@ -23,5 +23,5 @@ const cocktails = db.model('cocktail', cocktailSchema);
 module.exports = {
   cocktails,
   db,
-  redisClient
+  cache
 };
