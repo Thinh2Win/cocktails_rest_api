@@ -3,7 +3,7 @@ const { createClient } = require('redis');
 
 require('dotenv').config();
 
-const cache = createClient();
+const cache = createClient({url: process.env.CACHE_URL});
 
 cache.connect()
   .catch(err => console.log(err));
@@ -18,7 +18,7 @@ const cocktailSchema = new db.Schema({
 db.connect(process.env.DB_URL)
   .catch(err => console.log(err));
 
-const cocktails = db.model('cocktail', cocktailSchema);
+const cocktails = db.model('cocktails', cocktailSchema);
 
 module.exports = {
   cocktails,
