@@ -43,3 +43,5 @@ export default function () {
 //   sleep(0.1);
 // }
 
+// note htmlreport doesn't work if using k6 in docker and should be commented out if so
+// import { htmlReport } from "https://raw.githubusercontent.com/benc-uk/k6-reporter/main/dist/bundle.js";
