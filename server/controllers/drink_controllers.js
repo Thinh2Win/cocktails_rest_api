@@ -1,15 +1,15 @@
-const { cache } = require('../db/db.js');
+const { cache } = require ('../db/db.js');
 const { addToCache } = require('../helpers/helpers.js');
 
-const { queryDrinkByName, queryRandomDrink, queryDrinkByIngredients, queryDrinkExcludingIngredients } = require('../models/drink_model.js');
+const { queryDrinkByName, queryRandomDrink, queryDrinkByIngredients, queryDrinkExcludingIngredients } = require('../services/drink_service.js');
 
-const getRandomDrink = (req, res) => {
+const getRandomDrinkHandler = (req, res) => {
   queryRandomDrink()
     .then(data => res.send(data))
     .catch(err => res.status(404).send(err));
 };
 
-const getDrinkByName = (req, res) => {
+const getDrinkByNameHandler = (req, res) => {
   let name = req.query.n;
   cache.get(name)
     .then(data => {
@@ -23,7 +23,7 @@ const getDrinkByName = (req, res) => {
     .catch(err => res.status(404).send(err));
 };
 
-const getDrinkByIngredients = (req, res) => {
+const getDrinkByIngredientsHandler = (req, res) => {
   let ingredients = req.query.i;
 
   cache.get(ingredients)
@@ -38,7 +38,7 @@ const getDrinkByIngredients = (req, res) => {
     .catch(err => res.status(404).send(err));
 };
 
-const getDrinkExcludingIngredients = (req, res) => {
+const getDrinkExcludingIngredientsHandler = (req, res) => {
   let ingredients = req.query.i;
 
   cache.get(ingredients)
@@ -54,8 +54,8 @@ const getDrinkExcludingIngredients = (req, res) => {
 };
 
 module.exports = {
-  getDrinkByName,
-  getRandomDrink,
-  getDrinkByIngredients,
-  getDrinkExcludingIngredients
+  getDrinkByNameHandler,
+  getRandomDrinkHandler,
+  getDrinkByIngredientsHandler,
+  getDrinkExcludingIngredientsHandler
 };
