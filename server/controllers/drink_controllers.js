@@ -1,10 +1,17 @@
 const { cache } = require ('../db/db.js');
 const { addToCache } = require('../helpers/helpers.js');
 
-const { queryDrinkByName, queryRandomDrink, queryDrinkByIngredients, queryDrinkExcludingIngredients } = require('../services/drink_service.js');
+const { queryDrinkByName, queryRandomDrink, queryDrinkByIngredients, queryDrinkExcludingIngredients, queryDrinkById } = require('../services/drink_service.js');
 
 const getRandomDrinkHandler = (req, res) => {
   queryRandomDrink()
+    .then(data => res.send(data))
+    .catch(err => res.status(404).send(err));
+};
+
+const getDrinkByIdHandler = (req, res) => {
+  let id = req.query.id;
+  queryDrinkById(id)
     .then(data => res.send(data))
     .catch(err => res.status(404).send(err));
 };
@@ -57,5 +64,6 @@ module.exports = {
   getDrinkByNameHandler,
   getRandomDrinkHandler,
   getDrinkByIngredientsHandler,
-  getDrinkExcludingIngredientsHandler
+  getDrinkExcludingIngredientsHandler,
+  getDrinkByIdHandler
 };

@@ -5,6 +5,10 @@ const queryRandomDrink = () => {
   return cocktails.aggregate([{$sample: {size: 1}}]);
 };
 
+const queryDrinkById = (param) => {
+  return cocktails.find({_id: param});
+};
+
 const queryDrinkByName = (param) => {
   let name = param.toLowerCase();
   // mongodb uses regex as the equivalent to mysql 'LIKE' query
@@ -34,5 +38,6 @@ module.exports = {
   queryDrinkByName,
   queryRandomDrink,
   queryDrinkByIngredients,
-  queryDrinkExcludingIngredients
+  queryDrinkExcludingIngredients,
+  queryDrinkById
 };
