@@ -38,7 +38,7 @@ test('turns string of ingredients into regex expressions', () => {
   let items = ['gin', 'tequila', 'vodka'];
   let data = createExpressions('search', 'GiN,TeQuILa,vODkA');
   for (let i = 0; i < items.length; i++) {
-    expect(data[i].Ingredients).toEqual(new RegExp(String.raw`${items[i]}`));
+    expect(data[i].ingredients).toEqual(new RegExp(String.raw`${items[i]}`));
   }
 });
 
@@ -46,7 +46,7 @@ test('turns multi word ingredients into regex expressions', () => {
   let items = ['blue curacao', 'triple sec'];
   let data = createExpressions('search', 'blue curacao,triple sec');
   for (let i = 0; i < items.length; i++) {
-    expect(data[i].Ingredients).toEqual(new RegExp(String.raw`${items[i]}`));
+    expect(data[i].ingredients).toEqual(new RegExp(String.raw`${items[i]}`));
   }
 });
 
@@ -54,7 +54,7 @@ test('turns ingredients with spacing into regex expressions', () => {
   let items = ['gin', 'tequila', 'rum', 'triple sec'];
   let data = createExpressions('search', 'gin, tequila, rum, triple sec');
   for (let i = 0; i < items.length; i++) {
-    expect(data[i].Ingredients).toEqual(new RegExp(String.raw`${items[i]}`));
+    expect(data[i].ingredients).toEqual(new RegExp(String.raw`${items[i]}`));
   }
 });
 
@@ -74,7 +74,7 @@ test('turns string of ingredients into regex expressions w/ not', () => {
   let items = ['gin', 'tequila', 'vodka'];
   let data = createExpressions('filter', 'GiN,TeQuILa,vODkA');
   for (let i = 0; i < items.length; i++) {
-    expect(data[i].Ingredients).toEqual({$not: new RegExp(String.raw`${items[i]}`)});
+    expect(data[i].ingredients).toEqual({$not: new RegExp(String.raw`${items[i]}`)});
   }
 });
 
@@ -82,7 +82,7 @@ test('turns multi word ingredients into regex expressions w/ not', () => {
   let items = ['blue curacao', 'triple sec'];
   let data = createExpressions('filter', 'blue curacao,triple sec');
   for (let i = 0; i < items.length; i++) {
-    expect(data[i].Ingredients).toEqual({$not: new RegExp(String.raw`${items[i]}`)});
+    expect(data[i].ingredients).toEqual({$not: new RegExp(String.raw`${items[i]}`)});
   }
 });
 
@@ -90,6 +90,6 @@ test('turns ingredients with spacing into regex expressions w/ not', () => {
   let items = ['gin', 'tequila', 'rum', 'triple sec'];
   let data = createExpressions('filter', 'gin, tequila, rum, triple sec');
   for (let i = 0; i < items.length; i++) {
-    expect(data[i].Ingredients).toEqual({$not: new RegExp(String.raw`${items[i]}`)});
+    expect(data[i].ingredients).toEqual({$not: new RegExp(String.raw`${items[i]}`)});
   }
 });
