@@ -1,10 +1,14 @@
 const { db } = require('../db/db.js');
 
 const cocktailSchema = new db.Schema({
-  Name: String,
-  Ingredients: String,
-  Garnish: String,
-  Preparation: String
+  name: String,
+  ingredients: String,
+  preparation: String,
+  glass: String,
+  strength: String,
+  description: String,
+  img: String,
+  profile: String
 });
 
 const cocktails = db.model('cocktails', cocktailSchema);
