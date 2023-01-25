@@ -15,8 +15,8 @@ const createExpressions = (method, ingredients) => {
   ingredients.split(',').forEach(ingredient => {
     // check for incorrect spacing and mixed case letters
     let regex = new RegExp(String.raw`${ingredient.trim().toLowerCase()}`);
-    method === 'search' && expressions.push({Ingredients: regex});
-    method === 'filter' && expressions.push({Ingredients: {$not: regex}});
+    method === 'search' && expressions.push({ingredients: regex});
+    method === 'filter' && expressions.push({ingredients: {$not: regex}});
   });
   return expressions;
 };
