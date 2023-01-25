@@ -13,7 +13,7 @@ const queryDrinkByName = (param) => {
   let name = param.toLowerCase();
   // mongodb uses regex as the equivalent to mysql 'LIKE' query
   let regex = new RegExp(String.raw`${name}`);
-  return cocktails.find({Name: regex})
+  return cocktails.find({name: regex})
     .then(res => res)
     .catch(err => err);
 };
