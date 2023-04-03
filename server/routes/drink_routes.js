@@ -3,7 +3,7 @@ const drinksRoutes = express.Router();
 const cors = require('cors');
 const { getDrinkByNameHandler, getRandomDrinkHandler, getDrinkByIngredientsHandler, getDrinkExcludingIngredientsHandler, getDrinkByIdHandler } = require('../controllers/drink_controllers.js');
 
-drinkRoutes.use(cors());
+drinksRoutes.use(cors());
 
 drinksRoutes.get('/drink', getRandomDrinkHandler);
 
